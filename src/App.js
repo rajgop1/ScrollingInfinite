@@ -19,7 +19,7 @@ export default function App() {
     pageRef.current = page;
     prevYRef.current = prevY;
     useEffect(() => {
-        getPhotos();
+        getData();
         setPage(pageRef.current + 1);
 
         let options = {
@@ -39,7 +39,7 @@ export default function App() {
 
         if (prevYRef.current > y) {
             console.log("actually getting photos.");
-            getPhotos()
+            getData()
             setPage(pageRef.current + 1);
         } else {
             console.log("conditional is false");
@@ -48,7 +48,7 @@ export default function App() {
         setPrevY(y);
     };
 
-    async function getPhotos() {
+    async function getData() {
         try {
             let res = await axios.get(
                 `${api}&page=${pageRef.current}&per_page=10`
